@@ -7,10 +7,10 @@ export function ProfilePage() {
   const { user } = useUser()
 
   return (
-    <PageSection title={user.name} subtitle={`${user.course} • ${user.year}`} className="screen profile-screen">
+    <PageSection title={user.name} subtitle={`${user.course}`} className="screen profile-screen">
       <header className="profile-hero">
         <div className="profile-avatar" aria-hidden="true">
-          {getInitials(user.name)}
+          {user.avatarUrl ? <img src={user.avatarUrl} alt="" /> : getInitials(user.name)}
         </div>
       </header>
 

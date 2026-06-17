@@ -10,7 +10,7 @@ import {
 import { TUTOR_INITIAL_MESSAGES } from '../data/portalData.js'
 
 export function TutorPage() {
-  const [draftMessage, setDraftMessage] = useState('Explique computação quântica')
+  const [draftMessage, setDraftMessage] = useState('Explique react')
   const [chatMessages, setChatMessages] = useState(TUTOR_INITIAL_MESSAGES)
 
   const sendMessage = () => {
@@ -105,8 +105,8 @@ function ActionIconButton({ label, icon: Icon }) {
 function buildTutorReply(message) {
   const lowerMessage = message.toLowerCase()
 
-  if (lowerMessage.includes('quântica') || lowerMessage.includes('quantica')) {
-    return 'Em resumo: computação quântica usa qubits e explora superposição e emaranhamento para resolver certos problemas de forma diferente da computação clássica.'
+  if (lowerMessage.includes('react') || lowerMessage.includes('react.js')) {
+    return 'Em resumo: React é uma biblioteca JavaScript para construir interfaces de usuário. Ele utiliza um virtual DOM para otimizar a atualização da interface.'
   }
 
   if (lowerMessage.includes('front-end') || lowerMessage.includes('frontend')) {

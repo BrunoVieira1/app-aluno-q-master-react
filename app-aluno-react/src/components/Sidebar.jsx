@@ -9,12 +9,12 @@ export function Sidebar() {
     <aside className="sidebar">
       <section className="sidebar__user">
         <div className="profile-avatar profile-avatar--small" aria-hidden="true">
-          {getInitials(user.name)}
+          {user.avatarUrl ? <img src={user.avatarUrl} alt="" /> : getInitials(user.name)}
         </div>
         <div>
-          <strong>{user.name}</strong>
+          <strong>{user.displayName || user.name}</strong>
           <p>
-            {user.course} • {user.year}
+            {user.course}
           </p>
         </div>
       </section>

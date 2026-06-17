@@ -8,7 +8,6 @@ export function PortalLayout() {
       <Header />
 
       <main className="portal-grid page-grid page-content">
-        <Sidebar />
         <div className="portal-grid__content">
           <Outlet />
         </div>

@@ -1,20 +1,24 @@
 import { useEffect, useState } from 'react'
 import { Card } from './Card.jsx'
+import { useUser } from '../context/UserContext.jsx'
 
 export function RemoteHighlightsCard() {
+  const { user } = useUser()
   const [state, setState] = useState({ loading: true, data: [], error: '' })
 
   useEffect(() => {
     let active = true
 
-    async function loadPosts() {
+    async function loadRepos() {
       setState({ loading: true, data: [], error: '' })
 
       try {
-        const response = await fetch('https://jsonplaceholder.typicode.com/posts?_limit=3')
+        const response = await fetch(
+          `https://api.github.com/users/${encodeURIComponent(user.githubUsername)}/repos?sort=updated&per_page=3`,
+        )
 
         if (!response.ok) {
-          throw new Error(`Falha ao carregar dados: ${response.status}`)
+          throw new Error(`GitHub respondeu com status ${response.status}`)
         }
 
         const data = await response.json()
@@ -37,21 +41,21 @@ export function RemoteHighlightsCard() {
       }
     }
 
-    loadPosts()
+          loadRepos()
 
     return () => {
       active = false
     }
-  }, [])
+        }, [user.githubUsername])
 
   return (
     <Card className="remote-card">
       <header className="remote-card__header">
         <div>
-          <span className="eyebrow">API externa</span>
-          <h2>Destaques do estudo</h2>
+                <span className="eyebrow">GitHub API</span>
+                <h2>Repositórios recentes</h2>
         </div>
-        <p>Exemplo com `loading`, `erro` e `dados` via `fetch`.</p>
+             
       </header>
 
       {state.loading && <p className="remote-card__state">Carregando destaques...</p>}
@@ -62,10 +66,10 @@ export function RemoteHighlightsCard() {
 
       {!state.loading && !state.error && (
         <ul className="remote-card__list">
-          {state.data.map((post) => (
-            <li key={post.id}>
-              <strong>{post.title}</strong>
-              <p>{post.body}</p>
+          {state.data.map((repo) => (
+            <li key={repo.id}>
+              <strong>{repo.name}</strong>
+              <p>{repo.description || 'Sem descrição informada.'}</p>
             </li>
           ))}
         </ul>

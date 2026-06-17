@@ -5,8 +5,8 @@ import { useUser } from '../context/UserContext.jsx'
 
 export function LoginPage() {
   const navigate = useNavigate()
-  const { signIn } = useUser()
-  const [formData, setFormData] = useState({ email: '', password: '' })
+  const { user, signIn } = useUser()
+  const [formData, setFormData] = useState({ githubUsername: user.githubUsername || '' })
   const [error, setError] = useState('')
 
   const handleChange = (event) => {
@@ -30,39 +30,27 @@ export function LoginPage() {
         onSubmit={(event) => {
           event.preventDefault()
 
-          if (!formData.email || !formData.password) {
-            setError('Preencha e-mail e senha para entrar.')
+          if (!formData.githubUsername) {
+            setError('Informe seu usuário do GitHub para entrar.')
             return
           }
 
           setError('')
           signIn({
-            name: 'João Silva',
-            preferredName: 'João',
-            email: formData.email,
+            githubUsername: formData.githubUsername.trim(),
+            displayName: formData.githubUsername.trim(),
+            name: formData.githubUsername.trim(),
           })
           navigate('/painel')
         }}
       >
         <InputField
-          label="Endereço de e-mail"
-          id="email"
-          type="email"
-          value={formData.email}
+          label="Usuário do GitHub"
+          id="githubUsername"
+          value={formData.githubUsername}
           onChange={handleChange}
-          placeholder="user@email.com"
+          placeholder="octocat"
         />
-
-        <InputField
-          label="Senha"
-          id="password"
-          type="password"
-          value={formData.password}
-          onChange={handleChange}
-          placeholder="Sua senha"
-        >
-          <Link to="/esqueceu-senha">Esqueceu?</Link>
-        </InputField>
 
         {error && <p className="input-field__error input-field__error--form">{error}</p>}
 

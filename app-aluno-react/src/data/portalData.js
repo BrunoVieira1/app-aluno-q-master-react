@@ -66,13 +66,13 @@ export const TUTOR_INITIAL_MESSAGES = [
     id: 1,
     role: 'user',
     author: 'João Silva',
-    content: 'Explique computação quântica',
+    content: 'Explique react',
   },
   {
     id: 2,
     role: 'assistant',
     author: 'Tutor IA',
     content:
-      'Computação quântica usa qubits e explora superposição e emaranhamento para resolver certos problemas de forma diferente da computação clássica.',
+      'React é uma biblioteca JavaScript para construir interfaces de usuário. Ele utiliza um virtual DOM para otimizar a atualização da interface.',
   },
 ]

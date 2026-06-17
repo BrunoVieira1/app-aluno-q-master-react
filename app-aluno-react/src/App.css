@@ -128,8 +128,6 @@
 
 .portal-grid {
   display: grid;
-  grid-template-columns: 260px minmax(0, 1fr);
-  gap: 24px;
   align-items: start;
 }
 
@@ -594,12 +592,69 @@
   font-weight: 700;
   letter-spacing: 0.04em;
   font-size: 1.1rem;
+  overflow: hidden;
 }
 
 .profile-avatar--small {
   width: 52px;
   height: 52px;
   font-size: 0.95rem;
+}
+
+.profile-avatar img,
+.profile-avatar--small img,
+.github-profile-card__avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.github-profile-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 18px;
+  align-items: center;
+}
+
+.github-profile-card__avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 24px;
+  overflow: hidden;
+  background: var(--surface-soft);
+  color: var(--green-dark);
+  display: grid;
+  place-items: center;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.github-profile-card__content {
+  display: grid;
+  gap: 8px;
+}
+
+.github-profile-card__content h2 {
+  margin: 0;
+  color: var(--green-dark);
+}
+
+.github-profile-card__content p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.github-profile-card__state {
+  font-size: 0.95rem;
+}
+
+.github-profile-card__state--error {
+  color: #c0392b;
+}
+
+.github-profile-card__bio {
+  max-width: 56ch;
 }
 
 .tabs {
@@ -973,6 +1028,10 @@
   .portal-card {
     padding-left: 20px;
     padding-right: 20px;
+  }
+
+  .github-profile-card {
+    grid-template-columns: 1fr;
   }
 
   .tutor-composer {

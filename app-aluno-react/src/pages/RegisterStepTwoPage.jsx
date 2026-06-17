@@ -37,7 +37,7 @@ export function RegisterStepTwoPage() {
             preferredName: formData.name.split(' ')[0] || formData.name,
             email: formData.email,
           })
-          navigate('/painel')
+          navigate('/login')
         }}
       >
         <InputField
