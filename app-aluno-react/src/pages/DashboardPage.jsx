@@ -67,7 +67,7 @@ export function DashboardPage() {
     return () => {
       active = false
     }
-  }, [signIn, user.githubUsername])
+  }, [user.githubUsername])
 
   const displayName = profileState.data?.name || profileState.data?.login || user.displayName
   const avatarUrl = profileState.data?.avatar_url || user.avatarUrl
